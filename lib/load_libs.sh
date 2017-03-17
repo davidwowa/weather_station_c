@@ -1,5 +1,5 @@
 echo "load wiringPi library for DHT11"
-git clone git://git.drogon.net/wiringPi
+git clone https://github.com/davidwowa/WiringPi
 
 echo "load wiringPi library for BMP180"
-git clone https://github.com/davidwowa/bmp180.git
+git clone https://github.com/davidwowa/bmp180
