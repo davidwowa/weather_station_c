@@ -2,7 +2,7 @@
 
 Sensors:
 
-DHT11
+DHT11 and 
 BMP180
 
 C-Code read sensor Data in CSV-Files every 5 minutes.
