@@ -1,4 +1,4 @@
-#include "bmp180.h"
+#include "lib/bmp180/src/bmp180.h"
 #include <unistd.h>
 #include <stdio.h>
 
