@@ -1,176 +1,99 @@
 $(document)
 		.ready(
 				function() {
+					var today = new Date();
+					var dd = today.getDate();
+					var mm = today.getMonth() + 1; // January is 0!
+					var yyyy = today.getFullYear();
+
+					var r_dd = dd;
+					var r_mm = mm;
+
+					if (dd <= 9) {
+						r_dd = '0' + dd;
+					}
+
+					if (mm <= 9) {
+						r_mm = '0' + mm;
+					}
+
+					today_logfile = 'bmp180_log.csv';
+					today_string = r_dd + '.' + r_mm + '.' + yyyy;
 
 					var options = {
 						chart : {
-							renderTo : 'bmp180_current_temperature',
-							type : 'gauge',
-							plotBackgroundColor : null,
-							plotBackgroundImage : null,
-							plotBorderWidth : 0,
-							plotShadow : false,
-							style : {
-								fontFamily : '"Century Gothic", CenturyGothic, AppleGothic, sans-serif'
-							}
+							renderTo : 'bmp180_common_temperature',
+							type : 'spline'
 						},
-
-						credits : {
-							enabled : false
-						},
-
 						title : {
-							text : 'Thermometer BMP180'
+							text : 'Temperature Common'
 						},
-						tooltip : {
-							enabled : false
+						subtitle : {
+							text : 'Source: BMP180'
 						},
-
-						pane : {
-							startAngle : -150,
-							endAngle : 150,
-							background : [ {
-								backgroundColor : {
-									linearGradient : {
-										x1 : 0,
-										y1 : 0,
-										x2 : 0,
-										y2 : 1
-									},
-									stops : [ [ 0, '#FFF' ], [ 1, '#333' ] ]
-								},
-								borderWidth : 0,
-								outerRadius : '109%'
-							}, {
-								backgroundColor : {
-									linearGradient : {
-										x1 : 0,
-										y1 : 0,
-										x2 : 0,
-										y2 : 1
-									},
-									stops : [ [ 0, '#333' ], [ 1, '#FFF' ] ]
-								},
-								borderWidth : 1,
-								outerRadius : '107%'
-							}, {
-							// default background
-							}, {
-								backgroundColor : '#DDD',
-								borderWidth : 0,
-								outerRadius : '105%',
-								innerRadius : '103%'
-							} ]
+						xAxis : {
+							type : 'datetime',
+							dateTimeLabelFormats : { // don't display the
+								// dummy year
+								month : '%e. %b',
+								year : '%b'
+							},
+							title : {
+								text : 'Time'
+							}
 						},
 
 						// the value axis
 						yAxis : {
-							min : -30,
-							max : 45,
-
-							minorTickInterval : 'auto',
-							minorTickWidth : 1,
-							minorTickLength : 10,
-							minorTickPosition : 'inside',
-							minorTickColor : '#666',
-
-							tickPixelInterval : 30,
-							tickWidth : 2,
-							tickPosition : 'inside',
-							tickLength : 10,
-							tickColor : '#666',
-							labels : {
-								step : 2,
-								rotation : 'auto'
-							},
 							title : {
-								text : unescape("%B0C")
-							},
-							plotBands : [
-
-							{
-								from : -30,
-								to : -15,
-								color : '#8a2be2' // dark violet
-							},
-
-							{
-								from : -15,
-								to : 0,
-								color : '#1e90ff' // blue
-							},
-
-							{
-								from : 0,
-								to : 22,
-								color : '#55BF3B' // green
-							}, {
-								from : 22,
-								to : 29,
-								color : '#DDDF0D' // yellow
-							}, {
-								from : 29,
-								to : 35,
-								color : '#DF5353' // red
-							}, {
-								from : 35,
-								to : 45,
-								color : '#b22222' // yellow
-							} ]
+								text : 'Temperature'
+							}
+						},
+						tooltip : {
+							pointFormat : '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y}</b><br/>',
+							xDateFormat : '%d.%m.%Y %H:%M:%S +1h',
+							shared : true,
+							crosshairs : true
 						},
 						plotOptions : {
-							gauge : {
-								dataLabels : {
-									y : 30,
-									style : {
-										fontSize : '24px'
-									},
-									useHTML : true
+							spline : {
+								marker : {
+									radius : 4,
+									lineColor : '#666666',
+									lineWidth : 1
 								}
 							}
 						},
-
 						series : []
 					};
 
-					$.get('bmp180_current_temperature.csv', function(data) {
+					$.get(today_logfile, function(data) {
 						// Split the lines
 						var lines = data.split('\n');
 
-						// Iterate over the lines and add categories or series
+						var seriesT = {
+							name : 'Temperature',
+							color : '#0000FF',
+							data : [],
+							tooltip : {
+								valueSuffix : ' °C'
+							}
+						};
 						$.each(lines, function(lineNo, line) {
-							var items = line.split(',');
+							var items = line.split(','),
 
-							// header line containes categories
-							if (lineNo == 0) {
-
-								var series = {
-									name : 'Temperature BMP180',
-									data : []
-								};
-								$.each(items, function(itemNo, item) {
-									if (itemNo == 0) {
-										// series.name = item;
-										series.data.push(parseFloat(item));
-									} else {
-										// series.data.push(parseFloat(item));
-									}
-								});
-
-								options.series.push(series);
-
+							timestamp = parseFloat(items[0]) + 7200000,
+							// !!!!! danger, on server must be 1 and 2
+							temp = parseInt(items[1], 10);
+							// console.log(timestamp + '_' + temp + '_' + hum);
+							if (!isNaN(timestamp)) {
+								seriesT.data.push([ timestamp, temp ]);
 							}
-
-							// the rest of the lines contain data with their
-							// name in the first
-							// position
-							else {
-
-							}
-
 						});
 
+						options.series.push(seriesT);
+
 						// Create the chart
-						var bmp180_current_temperature = new Highcharts.Chart(options);
+						var bmp180_common_temperature = new Highcharts.Chart(options);
 					});
 				});

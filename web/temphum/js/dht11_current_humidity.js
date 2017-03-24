@@ -155,6 +155,7 @@ $(document)
 						});
 
 						// Create the chart
-						var dht11_current_humidity = new Highcharts.Chart(options);
+						var dht11_current_humidity = new Highcharts.Chart(
+								options);
 					});
 				});

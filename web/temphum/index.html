@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Temperature and Humidity BS</title>
+<title>Home Data BS</title>
 </head>
 <body>
 	<link rel="stylesheet" type="text/css" href="css/common.css">
@@ -18,74 +18,61 @@
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/highcharts-more.js"></script>
 
-	<!-- Temperature -->
-	<script type="text/javascript" src="js/current_temperature.js"></script>
-	<!-- humidity -->
-	<script type="text/javascript" src="js/current_humidity.js"></script>
-	<!-- Graph -->
-	<script type="text/javascript" src="js/current_day_graph_dht11.js"></script>
-	<!-- Common Graph -->
-	<script type="text/javascript" src="js/common_graph.js"></script>
-	<script type="text/javascript" src="js/common_graph_2.js"></script>
-	<script type="text/javascript" src="js/current_altitude.js"></script>
-	<script type="text/javascript" src="js/current_temperature_2.js"></script>
-	<script type="text/javascript" src="js/current_pressure.js"></script>
-	<script type="text/javascript" src="js/current_day_bmp180.js"></script>
+	<script type="text/javascript" src="js/bmp180_current_altitude.js"></script>
+	<script type="text/javascript" src="js/bmp180_current_pressure.js"></script>
+	<script type="text/javascript" src="js/bmp180_current_temperature.js"></script>
+	<script type="text/javascript" src="js/dht11_current_humidity.js"></script>
+	<script type="text/javascript" src="js/dht11_current_temperature.js"></script>
+
+	<script type="text/javascript" src="js/bmp180_current_day_altitude.js"></script>
+	<script type="text/javascript" src="js/bmp180_current_day_pressure.js"></script>
+	<script type="text/javascript"
+		src="js/bmp180_current_day_temperature.js"></script>
+	<script type="text/javascript" src="js/dht11_current_day_humidity.js"></script>
+	<script type="text/javascript"
+		src="js/dht11_current_day_temperature.js"></script>
+
+	<script type="text/javascript" src="js/bmp180_common_altitude.js"></script>
+	<script type="text/javascript" src="js/bmp180_common_pressure.js"></script>
+	<script type="text/javascript" src="js/bmp180_common_temperature.js"></script>
+	<script type="text/javascript" src="js/dht11_common_humidity.js"></script>
+	<script type="text/javascript" src="js/dht11_common_temperature.js"></script>
 
 	<div class="center">
 		<div id="dht11_current_temperature"
 			style="min-width: 400px; height: 350px; float: left"></div>
 		<div id="dht11_current_humidity"
 			style="min-width: 400px; height: 350px; float: left"></div>
-
 		<div id="bmp180_current_temperature"
 			style="min-width: 400px; height: 350px; float: left"></div>
-		<div id="bmp180_current_presure"
+		<div id="bmp180_current_pressure"
 			style="min-width: 400px; height: 350px; float: left"></div>
 		<div id="bmp180_current_altitude"
 			style="min-width: 400px; height: 350px; float: left"></div>
 	</div>
-	<div>Current Data</div>
-	<div>
+	<div class="center">
 		<div id="bmp180_current_day_temperature"
-			style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	</div>
-	<div>
+			style="min-width: 310px; margin: 0 auto"></div>
 		<div id="dht11_current_day_temperature"
-			style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	</div>
-	<div>
+			style="min-width: 310px; margin: 0 auto"></div>
 		<div id="dht11_current_day_humidity"
-			style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	</div>
-	<div>
-		<div id="bmp180_current_day_presure"
-			style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	</div>
-	<div>
+			style="min-width: 310px; margin: 0 auto"></div>
+		<div id="bmp180_current_day_pressure"
+			style="min-width: 310px; margin: 0 auto"></div>
 		<div id="bmp180_current_day_altitude"
-			style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+			style="min-width: 310px; margin: 0 auto"></div>
 	</div>
-	<div>Common Data</div>
-	<div>
+	<div class="center">
 		<div id="bmp180_common_temperature"
-			style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	</div>
-	<div>
+			style="min-width: 310px; margin: 0 auto"></div>
 		<div id="dht11_common_temperature"
-			style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	</div>
-	<div>
+			style="min-width: 310px; margin: 0 auto"></div>
 		<div id="dht11_common_humidity"
-			style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	</div>
-	<div>
-		<div id="bmp180_common_presure"
-			style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	</div>
-	<div>
+			style="min-width: 310px; margin: 0 auto"></div>
+		<div id="bmp180_common_pressure"
+			style="min-width: 310px; margin: 0 auto"></div>
 		<div id="bmp180_common_altitude"
-			style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+			style="min-width: 310px; margin: 0 auto"></div>
 	</div>
 </body>
 </html>
