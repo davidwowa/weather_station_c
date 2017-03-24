@@ -76,11 +76,11 @@ void dht11_read_val() {
 		fclose(fhc);
 
 		FILE *fh;
-		fh = fopen("/var/www/temphum/dht11_current_hyg.csv", "w");
+		fh = fopen("/var/www/temphum/dht11_current_humidity.csv", "w");
 		fprintf(fh, "%d\n", dht11_val[0]);
 		fclose(fh);
 		FILE *ft;
-		ft = fopen("/var/www/temphum/dht11_current_temp.csv", "w");
+		ft = fopen("/var/www/temphum/dht11_current_temperature.csv", "w");
 		fprintf(ft, "%d.%d\n", dht11_val[2], dht11_val[3]);
 		fclose(ft);
 		exit(1);

@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
 		fprintf(fh, "%lu\n", pressure);
 		fclose(fh);
 		FILE *ft;
-		ft = fopen("/var/www/temphum/bmp180_current_temp.csv", "w");
+		ft = fopen("/var/www/temphum/bmp180_current_temperature.csv", "w");
 		fprintf(ft, "%f\n", temperature);
 		fclose(ft);
 		FILE * fa;
