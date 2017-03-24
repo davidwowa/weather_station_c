@@ -160,16 +160,12 @@ $(document)
 								options.series.push(series);
 
 							}
-
 							// the rest of the lines contain data with their
 							// name in the first
 							// position
 							else {
-
 							}
-
 						});
-
 						// Create the chart
 						var bmp180_current_altitude = new Highcharts.Chart(
 								options);

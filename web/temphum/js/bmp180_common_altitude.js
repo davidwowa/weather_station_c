@@ -83,7 +83,7 @@ $(document)
 							var items = line.split(','),
 
 							timestamp = parseFloat(items[0]) + 7200000,
-							// !!!!! danger, on server must be 1 and 2
+							// !!!!! danger, on server must be 2
 							temp = parseInt(items[3], 10);
 							// console.log(timestamp + '_' + temp + '_' + hum);
 							if (!isNaN(timestamp)) {
