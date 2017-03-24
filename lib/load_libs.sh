@@ -1,3 +1,4 @@
+#!bin/bash
 echo "load wiringPi library for DHT11"
 git clone https://github.com/davidwowa/WiringPi
 
