@@ -59,7 +59,7 @@ void dht11_read_val() {
 		time_t now = time(NULL);
 		struct tm *t = localtime(&now);
 		strftime(text, sizeof(text) - 1, "%d-%m-%Y", t);
-		char prefix[50] = "/var/www/temphum/log-";
+		char prefix[50] = "/var/www/temphum/dht11_";
 		strcat(prefix, text);
 		char suffix[50] = ".csv";
 		strcat(prefix, suffix);
@@ -70,17 +70,17 @@ void dht11_read_val() {
 		fclose(fp);
 
 		FILE *fhc;
-		fhc = fopen("/var/www/temphum/log-common.csv", "a");
+		fhc = fopen("/var/www/temphum/dht11_log.csv", "a");
 		fprintf(fhc, "%u000,%d%d,%d\n", (unsigned) time(NULL), dht11_val[2],
 				dht11_val[3], dht11_val[0]);
 		fclose(fhc);
 
 		FILE *fh;
-		fh = fopen("/var/www/temphum/current_hyg.csv", "w");
+		fh = fopen("/var/www/temphum/dht11_current_hyg.csv", "w");
 		fprintf(fh, "%d\n", dht11_val[0]);
 		fclose(fh);
 		FILE *ft;
-		ft = fopen("/var/www/temphum/current_temp.csv", "w");
+		ft = fopen("/var/www/temphum/dht11_current_temp.csv", "w");
 		fprintf(ft, "%d.%d\n", dht11_val[2], dht11_val[3]);
 		fclose(ft);
 		exit(1);
