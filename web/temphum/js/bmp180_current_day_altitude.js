@@ -86,7 +86,7 @@ $(document)
 							// !!!!! danger, on
 							// server must be 1
 							// and 2
-							temp = parseInt(items[3], 10);
+							temp = parseInt((items[3] * (-1)), 10);
 							// console.log(timestamp
 							// + '_' + temp +
 							// '_' + hum);

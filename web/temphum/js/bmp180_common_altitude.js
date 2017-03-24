@@ -84,7 +84,7 @@ $(document)
 
 							timestamp = parseFloat(items[0]) + 7200000,
 							// !!!!! danger, on server must be 2
-							temp = parseInt(items[3], 10);
+							temp = parseInt(items[3] * (-1), 10);
 							// console.log(timestamp + '_' + temp + '_' + hum);
 							if (!isNaN(timestamp)) {
 								seriesT.data.push([ timestamp, temp ]);

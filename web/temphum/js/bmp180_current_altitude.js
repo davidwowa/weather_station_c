@@ -151,7 +151,7 @@ $(document)
 								$.each(items, function(itemNo, item) {
 									if (itemNo == 0) {
 										// series.name = item;
-										series.data.push(parseFloat(item));
+										series.data.push((parseFloat(item)*(-1)));
 									} else {
 										// series.data.push(parseFloat(item));
 									}
