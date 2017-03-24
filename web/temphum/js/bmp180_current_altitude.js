@@ -65,7 +65,7 @@ $(document)
 
 						// the value axis
 						yAxis : {
-							min : -30,
+							min : -300,
 							max : 250,
 
 							minorTickInterval : 'auto',
