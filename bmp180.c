@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
 
 		FILE *fhc;
 		fhc = fopen("/var/www/temphum/bmp180_log.csv", "a");
-		fprintf(fhc, "%u000,%d%d,%d\n", (unsigned) time(NULL), temperature,
+		fprintf(fhc, "%u000,%d,%d,%d\n", (unsigned) time(NULL), temperature,
 				pressure, altitude);
 		fclose(fhc);
 
